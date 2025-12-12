@@ -36,7 +36,7 @@ public class Handgun : Weapon
             if (hit.collider.TryGetComponent(out Health health))
             {
                 health.Rpc_TakeDamage(damage, info.Source);
-                playerScore.AddScore(1);
+                
             }
             else
             {

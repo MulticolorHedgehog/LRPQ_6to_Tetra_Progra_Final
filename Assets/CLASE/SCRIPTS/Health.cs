@@ -9,8 +9,12 @@ public class Health : NetworkBehaviour
 
     [Networked]  public int _health { get; set; }
 
+    
+
     public override void Spawned()
     {
+        
+
         _health = health;
     }
 
@@ -27,6 +31,8 @@ public class Health : NetworkBehaviour
     public void Rpc_TakeDamage(int damage, PlayerRef shooter)
     {
         _health -= damage;
+        
+
         Debug.Log($"{name} recibio daño {shooter}. Vida Actual");
 
         if( _health <= 0 )

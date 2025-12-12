@@ -98,7 +98,7 @@ public class ScoreManager : NetworkBehaviour
     }
 
     [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-    private void RPC_ProcessHit(PlayerRef shooterRef, PlayerRef targetRef, int damage)
+    public void RPC_ProcessHit(PlayerRef shooterRef, PlayerRef targetRef, int damage)
     {
 
 

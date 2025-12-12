@@ -17,8 +17,6 @@ public class PlayerScore : NetworkBehaviour
 
         if (scoreManager != null)
         {
-            scoreManager.RegisterPlayer(this);
-
             
             if (Object.HasInputAuthority)
             {
@@ -43,6 +41,7 @@ public class PlayerScore : NetworkBehaviour
     private void RPC_SyncInitialScore(int currentScore)
     {
         Score = currentScore;
+        
     }
 
     
