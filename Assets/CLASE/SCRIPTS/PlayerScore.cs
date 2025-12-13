@@ -9,6 +9,7 @@ public class PlayerScore : NetworkBehaviour
     [Networked] public NetworkString<_16> PlayerName { get; set; }
 
     [SerializeField] private ScoreManager scoreManager;
+    
 
     public override void Spawned()
     {
