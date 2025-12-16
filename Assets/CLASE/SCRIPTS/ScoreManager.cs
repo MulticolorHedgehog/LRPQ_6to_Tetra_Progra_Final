@@ -160,7 +160,7 @@ public class ScoreManager : NetworkBehaviour
         {
             player.RPC_ResetScore();
         }
-
+        Application.Quit();
         RPC_UpdateUI();
     }
 

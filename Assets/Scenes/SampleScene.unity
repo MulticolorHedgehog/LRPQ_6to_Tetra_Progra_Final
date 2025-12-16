@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 119309775}
   - component: {fileID: 119309774}
   - component: {fileID: 119309773}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2386,7 +2386,7 @@ GameObject:
   - component: {fileID: 1527808626}
   - component: {fileID: 1527808625}
   - component: {fileID: 1527808629}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2925,7 +2925,7 @@ MonoBehaviour:
   TextoJ2: {fileID: 1502486263}
   WinnerText: {fileID: 1599662262}
   WinPanel: {fileID: 1942384422}
-  WinScore: 10
+  WinScore: 1
 --- !u!1 &1942384422
 GameObject:
   m_ObjectHideFlags: 0
