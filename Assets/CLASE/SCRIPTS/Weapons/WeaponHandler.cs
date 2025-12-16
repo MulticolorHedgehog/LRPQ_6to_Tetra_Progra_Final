@@ -8,7 +8,7 @@ namespace Player
     {
 
         [SerializeField] private Weapon actualWeapon;
-
+        
 
         public override void FixedUpdateNetwork()
         {
@@ -16,7 +16,6 @@ namespace Player
             {
                 if(input.shoot)
                 {
-                    
                     actualWeapon.RpcRaycastShoot();
                     actualWeapon.RpcRigidBodyShoot();
 

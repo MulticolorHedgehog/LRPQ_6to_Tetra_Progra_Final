@@ -358,6 +358,8 @@ MonoBehaviour:
   range: 1.92
   actualAmmo: 9898
   MaxAmmo: 989789786
+  pointsToAdd: 1
+  playerNumber: 1
 --- !u!114 &8214407004788663739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1413,7 +1415,7 @@ PrefabInstance:
       addedObject: {fileID: 7469081905794905233}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 55490c0cec081d54ead6cc6d7cbaecc4, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 521038059841257630}
+      addedObject: {fileID: 8292904821794660500}
   m_SourcePrefab: {fileID: 100100000, guid: 55490c0cec081d54ead6cc6d7cbaecc4, type: 3}
 --- !u!1 &5152436677021633330 stripped
 GameObject:
@@ -1562,7 +1564,7 @@ MonoBehaviour:
   - {fileID: 4201579798926941941}
   - {fileID: 3567261591731923268}
   - {fileID: 7469081905794905233}
-  - {fileID: 521038059841257630}
+  - {fileID: 8292904821794660500}
   - {fileID: 7851672374143022524}
   - {fileID: 7523344557244470708}
   ForceRemoteRenderTimeframe: 0
@@ -1631,7 +1633,7 @@ MonoBehaviour:
     CompressNetworkPosition: 0
     ForceSingleOverlapQuery: 0
     SuppressConvexMeshColliders: 0
---- !u!114 &521038059841257630
+--- !u!114 &8292904821794660500
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

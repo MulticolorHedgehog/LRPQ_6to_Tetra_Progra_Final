@@ -1,3 +1,5 @@
+using System.Globalization;
+using System.Linq;
 using Fusion;
 using TMPro;
 using UnityEngine;
@@ -7,54 +9,73 @@ public class PlayerScore : NetworkBehaviour
 {
     [Networked] public int Score { get; set; }
     [Networked] public NetworkString<_16> PlayerName { get; set; }
+    [Networked] public PlayerRef NetworkPlayer { get; set; }
 
-    [SerializeField] private ScoreManager scoreManager;
-    
+    private ScoreManager _scoreManager;
 
     public override void Spawned()
     {
+        base.Spawned();
 
-        scoreManager = FindObjectOfType<ScoreManager>();
-
-        if (scoreManager != null)
+        
+        _scoreManager = FindObjectOfType<ScoreManager>();
+        if (_scoreManager == null)
         {
+            GameObject go = new GameObject("ScoreManager");
+            _scoreManager = go.AddComponent<ScoreManager>();
+        }
+
+        
+        if (Object.HasInputAuthority)
+        {
+            PlayerName = "Player_" + Runner.LocalPlayer;
+        }
+
+        if (_scoreManager != null)
+        {
+            _scoreManager.RPC_RegisterPlayer(this);
+        }
+    }
+
+    public override void Despawned(NetworkRunner runner, bool hasState)
+    {
+        if (_scoreManager != null)
+        {
+            _scoreManager.RPC_UnregisterPlayer(this);
+        }
+        base.Despawned(runner, hasState);
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    public void RPC_AddScore(int amount)
+    {
+        Score += amount;
+
+        
+        if (_scoreManager != null)
+        {
+            _scoreManager.RPC_OnScoreChanged(this);
+
             
-            if (Object.HasInputAuthority)
+            if (Score >= _scoreManager.WinScore)
             {
-                RPC_SyncInitialScore(Score);
+                _scoreManager.RPC_PlayerWon(this);
             }
         }
     }
 
     [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
-    public void RPC_AddScore(int points)
+    public void RPC_ResetScore()
     {
-        if (Object.HasInputAuthority)
-        {
-            Score += points;
-
-            
-
-        }
+        Score = 0;
     }
 
-    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-    private void RPC_SyncInitialScore(int currentScore)
-    {
-        Score = currentScore;
-        
-    }
 
-    
-    public void ResetScore()
-    {
-        if (Object.HasInputAuthority)
-        {
-            Score = 0;
-
-        }
-    }
 }
+
+
+
+
 
     
 

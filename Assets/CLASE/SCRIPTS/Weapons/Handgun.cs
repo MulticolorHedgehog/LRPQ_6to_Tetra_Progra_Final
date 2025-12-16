@@ -11,8 +11,10 @@ using Unity.Burst.Intrinsics;
 public class Handgun : Weapon
 {
 
-    private ScoreManager scoreManager;
     private PlayerScore playerScore;
+    private int punto = 1;
+    
+
     /// <summary>
     /// Un RPC es un protocolo para mandar a llamar un metodo en diferentes clientes
     /// 
@@ -23,9 +25,11 @@ public class Handgun : Weapon
     [Rpc(RpcSources.InputAuthority,RpcTargets.All)]
     public override void RpcRaycastShoot(RpcInfo info = default)
     {
+
+        playerScore = FindObjectOfType<PlayerScore>();
+
         
-        scoreManager = FindObjectOfType<ScoreManager>();
-        playerScore = GetComponent<PlayerScore>();
+
 
         if (Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out RaycastHit hit, range, layerMask))
         {
@@ -35,19 +39,22 @@ public class Handgun : Weapon
 
             if (hit.collider.TryGetComponent(out Health health))
             {
-                health.Rpc_TakeDamage(damage, info.Source);
-                
+                //health.Rpc_TakeDamage(damage, info.Source);
+                playerScore.RPC_AddScore(punto);
+
             }
             else
             {
                 Debug.Log("No hay componente de vida :(");
-                
+                playerScore.RPC_AddScore(punto);
             }
         }
+
+
     }
 
-    
-    
+  
+
     public override void RpcRigidBodyShoot()
     {
         
